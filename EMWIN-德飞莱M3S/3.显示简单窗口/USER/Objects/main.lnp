@@ -1,0 +1,26 @@
+--cpu Cortex-M3
+".\objects\core_cm3.o"
+".\objects\startup_stm32f10x_xl.o"
+".\objects\stm32f10x_gpio.o"
+".\objects\misc.o"
+".\objects\stm32f10x_rcc.o"
+".\objects\stm32f10x_fsmc.o"
+".\objects\stm32f10x_usart.o"
+".\objects\lcd.o"
+".\objects\delay.o"
+".\objects\usart.o"
+".\objects\sys.o"
+".\objects\main.o"
+".\objects\stm32f10x_it.o"
+".\objects\system_stm32f10x.o"
+".\objects\gui_x.o"
+".\objects\guiconf.o"
+".\objects\guidrv_template.o"
+".\objects\lcdconf_flexcolor_template.o"
+".\objects\simconf.o"
+"..\EMWIN\EMWIN_LIB\STemWin526_CM3_Keil.lib"
+".\objects\framewindlg.o"
+--strict --scatter ".\Objects\main.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\main.map" -o .\Objects\main.axf
