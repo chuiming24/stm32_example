@@ -1,0 +1,12 @@
+--cpu Cortex-M3
+"..\ouput\stm32f10x_gpio.o"
+"..\ouput\stm32f10x_rcc.o"
+"..\ouput\stm32f10x_it.o"
+"..\ouput\system_stm32f10x.o"
+"..\ouput\main.o"
+"..\ouput\core_cm3.o"
+"..\ouput\startup_stm32f10x_md.o"
+--strict --scatter "..\OUPUT\text.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\text.map" -o ..\OUPUT\text.axf
