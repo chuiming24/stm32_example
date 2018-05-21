@@ -32,3 +32,4 @@
 ..\output\main.o: ..\LCD_DRIVER\lcd.h
 ..\output\main.o: ..\DRIVER\inc\led.h
 ..\output\main.o: ..\DRIVER\inc\key.h
+..\output\main.o: ..\DRIVER\inc\adc.h

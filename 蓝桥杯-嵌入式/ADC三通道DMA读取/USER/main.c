@@ -5,6 +5,7 @@
 #include "lcd.h"
 #include "led.h"
 #include "key.h"
+#include "adc.h"
 
 //LCD位于PC0-PC15，与LED共享高位，其他脚见说明书
 //LED位于PC8-PC15，高电平灭，低电平亮，采用573在PD2进行锁存
@@ -14,7 +15,7 @@ u32 TimingDelay = 0;
 void Delay_Ms(u32 nTime);
 
 
-#define DEBUG_STAT 1
+#define DEBUG_STAT 3
 void debug(void);
 
 #define SYSTEM_STAT 1
@@ -26,6 +27,7 @@ int  main(){
 	LED_Init();
 	SysTick_Config(SystemCoreClock /1000);
 	KEY_Init();
+	adc_Init();
 	
 	//清屏，并设置字体背景和颜色
 	LCD_Clear(Blue);
@@ -53,7 +55,7 @@ int  main(){
 
 
 void debug(){
-u16 key_temp = 0;
+u16 temp = 0;
 u8 char_temp[20] = {0};
 	
 	while(1){
@@ -76,10 +78,18 @@ u8 char_temp[20] = {0};
 				Delay_Ms(1000);		
 				break;
 			case 2:
-				key_temp = ScanKey();
-				if(key_temp != 0xff)
-					sprintf((char *)char_temp, "%u", key_temp);
+				temp = ScanKey();
+				if(temp != 0xff)
+					sprintf((char *)char_temp, "%u    ", temp);
 				LCD_DisplayStringLine(Line4 ,(u8 *)char_temp);
+				break;
+			case 3:
+				sprintf((char *)char_temp, "%u    ", ADCConvertedValue[0]);
+				LCD_DisplayStringLine(Line5 ,(u8 *)char_temp);
+				sprintf((char *)char_temp, "%u    ", ADCConvertedValue[1]);
+				LCD_DisplayStringLine(Line6 ,(u8 *)char_temp);
+				sprintf((char *)char_temp, "%u    ", ADCConvertedValue[2]);
+				LCD_DisplayStringLine(Line7 ,(u8 *)char_temp);
 				break;
 		}
 	}
