@@ -483,6 +483,26 @@
               <FileType>1</FileType>
               <FilePath>..\DRIVER\scr\led.c</FilePath>
             </File>
+            <File>
+              <FileName>key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVER\scr\key.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbkey.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\usbkey.c</FilePath>
+            </File>
+            <File>
+              <FileName>linuxkey.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\linuxkey.c</FilePath>
+            </File>
+            <File>
+              <FileName>linuxkeyuser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\linuxkeyuser.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

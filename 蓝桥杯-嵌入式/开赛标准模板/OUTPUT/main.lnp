@@ -9,6 +9,9 @@
 "..\output\lcd.o"
 "..\output\led.o"
 "..\output\key.o"
+"..\output\usbkey.o"
+"..\output\linuxkey.o"
+"..\output\linuxkeyuser.o"
 --strict --scatter "..\OUTPUT\main.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -1,7 +1,7 @@
 #include "stm32f10x.h"
 #include "key.h"
 
-extern KeyFlag;
+int KeyFlag = 1;
 
 //°´¼üºê¶¨Òå
 #define RB1	GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_0)
