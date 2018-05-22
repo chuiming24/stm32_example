@@ -206,4 +206,80 @@ void USART2_IRQHandler(void)
 	}	  
 }
 
+__IO uint16_t IC2ReadValue1 = 0, IC2ReadValue2 = 0;
+__IO uint16_t CaptureNumber_CH2 = 0;
+__IO uint32_t Capture_CH2 = 0;
+__IO uint32_t TIM2Freq_CH2 = 0;
+
+__IO uint16_t IC3ReadValue1 = 0, IC3ReadValue2 = 0;
+__IO uint16_t CaptureNumber_CH3 = 0;
+__IO uint32_t Capture_CH3 = 0;
+__IO uint32_t TIM2Freq_CH3 = 0;
+void TIM2_IRQHandler(void)
+{ 
+	
+
+  if(TIM_GetITStatus(TIM2, TIM_IT_CC2) == SET) 
+  {
+    /* Clear TIM3 Capture compare interrupt pending bit */
+    TIM_ClearITPendingBit(TIM2, TIM_IT_CC2);
+    if(CaptureNumber_CH2 == 0)
+    {
+      /* Get the Input Capture value */
+      IC2ReadValue1 = TIM_GetCapture2(TIM2);
+      CaptureNumber_CH2 = 1;
+    }
+    else if(CaptureNumber_CH2 == 1)
+    {
+      /* Get the Input Capture value */
+      IC2ReadValue2 = TIM_GetCapture2(TIM2); 
+      
+      /* Capture computation */
+      if (IC2ReadValue2 > IC2ReadValue1)
+      {
+        Capture_CH2 = (IC2ReadValue2 - IC2ReadValue1); 
+      }
+      else
+      {
+        Capture_CH2 = ((0xFFFF - IC2ReadValue1) + IC2ReadValue2); 
+      }
+      /* Frequency computation */ 
+      TIM2Freq_CH2 = (uint32_t) 1000000 / Capture_CH2;
+      CaptureNumber_CH2 = 0;
+    }
+  }
+	
+
+  if(TIM_GetITStatus(TIM2, TIM_IT_CC3) == SET) 
+  {
+    /* Clear TIM3 Capture compare interrupt pending bit */
+    TIM_ClearITPendingBit(TIM2, TIM_IT_CC3);
+    if(CaptureNumber_CH3 == 0)
+    {
+      /* Get the Input Capture value */
+      IC3ReadValue1 = TIM_GetCapture3(TIM2);
+      CaptureNumber_CH3 = 1;
+    }
+    else if(CaptureNumber_CH3 == 1)
+    {
+      /* Get the Input Capture value */
+      IC3ReadValue2 = TIM_GetCapture3(TIM2); 
+      
+      /* Capture computation */
+      if (IC3ReadValue2 > IC3ReadValue1)
+      {
+        Capture_CH3 = (IC3ReadValue2 - IC3ReadValue1); 
+      }
+      else
+      {
+        Capture_CH3 = ((0xFFFF - IC3ReadValue1) + IC3ReadValue2); 
+      }
+      /* Frequency computation */ 
+      TIM2Freq_CH3 = (uint32_t) 1000000 / Capture_CH3;
+      CaptureNumber_CH3 = 0;
+    }
+  }	
+}
+
+
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/

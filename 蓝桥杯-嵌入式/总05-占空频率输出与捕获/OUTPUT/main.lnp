@@ -7,6 +7,7 @@
 "..\output\stm32f10x_dma.o"
 "..\output\stm32f10x_usart.o"
 "..\output\misc.o"
+"..\output\stm32f10x_tim.o"
 "..\output\main.o"
 "..\output\stm32f10x_it.o"
 "..\output\system_stm32f10x.o"
@@ -17,6 +18,7 @@
 "..\output\usart.o"
 "..\output\eeprom.o"
 "..\output\i2c.o"
+"..\output\puls.o"
 --library_type=microlib --strict --scatter "..\OUTPUT\main.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
