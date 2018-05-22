@@ -36,3 +36,4 @@
 ..\output\main.o: ..\DRIVER\inc\eeprom.h
 ..\output\main.o: ..\DRIVER\inc\usart.h
 ..\output\main.o: ..\DRIVER\inc\puls.h
+..\output\main.o: ..\DRIVER\inc\fre.h

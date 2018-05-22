@@ -9,6 +9,7 @@
 #include "eeprom.h"
 #include "usart.h"
 #include "puls.h"
+#include "fre.h"
 
 //LCD位于PC0-PC15，与LED共享高位，其他脚见说明书
 //LED位于PC8-PC15，高电平灭，低电平亮，采用573在PD2进行锁存
@@ -18,7 +19,7 @@ u32 TimingDelay = 0;
 void Delay_Ms(u32 nTime);
 
 
-#define DEBUG_STAT 6
+#define DEBUG_STAT 7
 void debug(void);
 
 #define SYSTEM_STAT 1
@@ -34,6 +35,7 @@ int  main(){
 	Eeprom_Init();
 	Usart_Init();
 	Puls_Init();
+	Fre_Init();
 	
 	//清屏，并设置字体背景和颜色
 	LCD_Clear(Blue);
@@ -119,6 +121,12 @@ u8 char_temp[20] = {0};
 				}
 				break;	
 			case 6:	
+				sprintf((char *)char_temp, "%u       ", TIM2Freq_CH2);
+				LCD_DisplayStringLine(Line7 ,(u8 *)char_temp);
+				sprintf((char *)char_temp, "%u       ", TIM2Freq_CH3);
+				LCD_DisplayStringLine(Line8 ,(u8 *)char_temp);			
+				break;	
+			case 7:	
 				sprintf((char *)char_temp, "%u       ", TIM2Freq_CH2);
 				LCD_DisplayStringLine(Line7 ,(u8 *)char_temp);
 				sprintf((char *)char_temp, "%u       ", TIM2Freq_CH3);

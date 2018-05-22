@@ -19,6 +19,7 @@
 "..\output\eeprom.o"
 "..\output\i2c.o"
 "..\output\puls.o"
+"..\output\fre.o"
 --library_type=microlib --strict --scatter "..\OUTPUT\main.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

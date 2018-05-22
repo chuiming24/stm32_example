@@ -4,8 +4,8 @@
 #include "stm32f10x.h"
 
 
-extern uint32_t TIM3Capture_CH2;
-extern uint32_t TIM3Capture_CH3;
+extern __IO uint16_t CCR1_Val;
+extern __IO uint16_t CCR2_Val;
 void Fre_Init(void);
 
 

@@ -1,7 +1,7 @@
 #include <puls.h>
 
 
-void Puls_Init(void){
+void Fre_Init(void){
 TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure; 
 NVIC_InitTypeDef NVIC_InitStructure;
 GPIO_InitTypeDef GPIO_InitStructure;
@@ -17,7 +17,7 @@ TIM_OCInitTypeDef  TIM_OCInitStructure;
   /* NVIC Configuration */
   NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;		//
   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
 
@@ -32,7 +32,7 @@ TIM_OCInitTypeDef  TIM_OCInitStructure;
 
   /* Time base configuration */
   TIM_TimeBaseStructure.TIM_Period = 65535;
-  TIM_TimeBaseStructure.TIM_Prescaler = 71;		//
+  TIM_TimeBaseStructure.TIM_Prescaler = 35;		//
   TIM_TimeBaseStructure.TIM_ClockDivision = 0;
   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
 
@@ -41,7 +41,7 @@ TIM_OCInitTypeDef  TIM_OCInitStructure;
   /* Output Compare Toggle Mode configuration: Channel1 */
   TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_Toggle;
   TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
-  TIM_OCInitStructure.TIM_Pulse = CCR1_Val;
+  TIM_OCInitStructure.TIM_Pulse = 1000;
   TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_Low;
   TIM_OC1Init(TIM3, &TIM_OCInitStructure);
 
@@ -49,7 +49,7 @@ TIM_OCInitTypeDef  TIM_OCInitStructure;
 	
   /* Output Compare Toggle Mode configuration: Channel2 */
   TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
-  TIM_OCInitStructure.TIM_Pulse = CCR2_Val;
+  TIM_OCInitStructure.TIM_Pulse = 1000;
 	
   TIM_OC2Init(TIM3, &TIM_OCInitStructure);
 	
@@ -60,5 +60,7 @@ TIM_OCInitTypeDef  TIM_OCInitStructure;
 
   /* Enable the CC2 Interrupt Request */
   TIM_ITConfig(TIM3, TIM_IT_CC1|TIM_IT_CC2, ENABLE);		//
+	
 
 }
+

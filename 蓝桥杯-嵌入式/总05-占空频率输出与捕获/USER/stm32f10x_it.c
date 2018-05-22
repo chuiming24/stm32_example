@@ -282,4 +282,34 @@ void TIM2_IRQHandler(void)
 }
 
 
+uint16_t capture = 0;
+__IO uint16_t CCR1_Val;
+__IO uint16_t CCR2_Val;
+
+/**
+  * @brief  This function handles TIM3 global interrupt request.
+  * @param  None
+  * @retval None
+  */
+void TIM3_IRQHandler(void)
+{
+  /* TIM3_CH1 toggling with frequency = 183.1 Hz */
+  if (TIM_GetITStatus(TIM3, TIM_IT_CC1) != RESET)
+  {
+		CCR1_Val = 1000000/TIM2Freq_CH2;
+    TIM_ClearITPendingBit(TIM3, TIM_IT_CC1 );
+    capture = TIM_GetCapture1(TIM3);
+    TIM_SetCompare1(TIM3, capture + CCR1_Val );
+  }
+
+  /* TIM3_CH2 toggling with frequency = 366.2 Hz */
+  if (TIM_GetITStatus(TIM3, TIM_IT_CC2) != RESET)
+  {
+		CCR2_Val = 1000000/TIM2Freq_CH3;
+    TIM_ClearITPendingBit(TIM3, TIM_IT_CC2);
+    capture = TIM_GetCapture2(TIM3);
+    TIM_SetCompare2(TIM3, capture + CCR2_Val);
+  }
+
+}
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/
